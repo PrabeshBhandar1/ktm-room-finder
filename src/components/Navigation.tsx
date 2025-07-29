@@ -5,7 +5,7 @@ import { Home, LogIn, UserCog } from "lucide-react";
 const Navigation = () => {
   const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className="bg-background border-b border-border sticky top-0 z-50">

@@ -17,7 +17,7 @@ const Login = () => {
   const [signupPhone, setSignupPhone] = useState("");
   const { toast } = useToast();
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement Supabase authentication
     toast({
@@ -26,7 +26,7 @@ const Login = () => {
     });
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement Supabase authentication
     toast({
