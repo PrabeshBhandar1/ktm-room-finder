@@ -52,7 +52,7 @@ const Admin = () => {
   });
   const { toast } = useToast();
 
-  const handleAdminLogin = (e: React.FormEvent) => {
+  const handleAdminLogin = (e) => {
     e.preventDefault();
     // TODO: Implement admin authentication with Supabase
     if (adminEmail === "admin@ktmrental.com" && adminPassword === "admin123") {
@@ -70,7 +70,7 @@ const Admin = () => {
     }
   };
 
-  const handleAddRoom = (e: React.FormEvent) => {
+  const handleAddRoom = (e) => {
     e.preventDefault();
     // TODO: Implement room creation with Supabase
     const room = {
@@ -101,7 +101,7 @@ const Admin = () => {
     });
   };
 
-  const handleDeleteRoom = (roomId: number) => {
+  const handleDeleteRoom = (roomId) => {
     // TODO: Implement room deletion with Supabase
     setRooms(rooms.filter(room => room.id !== roomId));
     toast({
