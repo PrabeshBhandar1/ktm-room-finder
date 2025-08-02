@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, LogIn, UserCog } from "lucide-react";
+import { Home, LogIn, UserCog, Search, Phone, Info } from "lucide-react";
 
 const Navigation = () => {
   const location = useLocation();
@@ -35,7 +35,30 @@ const Navigation = () => {
                     : "text-foreground hover:bg-accent hover:text-accent-foreground"
                 }`}
               >
+                <Search size={16} />
                 <span>Find Rooms</span>
+              </Link>
+              <Link
+                to="/contact"
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/contact") 
+                    ? "bg-primary text-primary-foreground" 
+                    : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                <Phone size={16} />
+                <span>Contact</span>
+              </Link>
+              <Link
+                to="/about"
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive("/about") 
+                    ? "bg-primary text-primary-foreground" 
+                    : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                }`}
+              >
+                <Info size={16} />
+                <span>About</span>
               </Link>
             </div>
           </div>
