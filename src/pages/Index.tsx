@@ -6,18 +6,18 @@ import { Search, MapPin, Shield, Users } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navigation />
       
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
           <div className="text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
               Find Your Perfect Room in
               <span className="text-primary block">Kathmandu Valley</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Discover comfortable, affordable rooms across Kathmandu, Patan, and Bhaktapur. 
               Your ideal home is just a click away.
             </p>

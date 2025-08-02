@@ -112,10 +112,10 @@ const Admin = () => {
 
   if (!isAdminAuthenticated) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background pb-16 md:pb-0">
         <Navigation />
         
-        <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md">
             <Card>
               <CardHeader className="text-center">
@@ -167,12 +167,12 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navigation />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 space-y-4 sm:space-y-0">
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Admin Dashboard</h1>
           <Button 
             variant="outline" 
             onClick={() => setIsAdminAuthenticated(false)}

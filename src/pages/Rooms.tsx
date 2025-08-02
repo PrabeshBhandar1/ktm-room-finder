@@ -56,7 +56,7 @@ const Rooms = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -65,14 +65,14 @@ const Rooms = () => {
             Find Your Perfect Room in Kathmandu Valley
           </h1>
           
-          <div className="flex gap-4 max-w-md">
+          <div className="flex flex-col sm:flex-row gap-4 max-w-md">
             <Input
               placeholder="Search by location or room type..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="flex-1"
             />
-            <Button onClick={handleSearch} className="flex items-center space-x-2">
+            <Button onClick={handleSearch} className="flex items-center space-x-2 w-full sm:w-auto">
               <Search size={16} />
               <span>Search</span>
             </Button>
