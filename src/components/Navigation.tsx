@@ -1,9 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, LogIn, UserCog, Search, Phone, Info } from "lucide-react";
+import { Home, LogIn, LogOut, UserCog, Search, Phone, Info, User } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navigation = () => {
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -66,18 +68,45 @@ const Navigation = () => {
             </div>
             
             <div className="flex items-center space-x-4">
-              <Link to="/login">
-                <Button variant="outline" size="sm" className="flex items-center space-x-2">
-                  <LogIn size={16} />
-                  <span>Login</span>
-                </Button>
-              </Link>
-              <Link to="/admin">
-                <Button variant="secondary" size="sm" className="flex items-center space-x-2">
-                  <UserCog size={16} />
-                  <span>Admin</span>
-                </Button>
-              </Link>
+              {user ? (
+                <>
+                  <span className="text-sm text-muted-foreground">
+                    Welcome, {user.email}
+                  </span>
+                  {isAdmin && (
+                    <Link to="/admin">
+                      <Button variant="secondary" size="sm" className="flex items-center space-x-2">
+                        <UserCog size={16} />
+                        <span>Admin</span>
+                      </Button>
+                    </Link>
+                  )}
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={signOut}
+                    className="flex items-center space-x-2"
+                  >
+                    <LogOut size={16} />
+                    <span>Sign Out</span>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link to="/auth">
+                    <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                      <LogIn size={16} />
+                      <span>Login</span>
+                    </Button>
+                  </Link>
+                  <Link to="/auth?type=admin">
+                    <Button variant="secondary" size="sm" className="flex items-center space-x-2">
+                      <UserCog size={16} />
+                      <span>Admin</span>
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -90,16 +119,33 @@ const Navigation = () => {
             KTM Rental
           </Link>
           <div className="flex items-center space-x-2">
-            <Link to="/login">
-              <Button variant="outline" size="sm">
-                <LogIn size={16} />
-              </Button>
-            </Link>
-            <Link to="/admin">
-              <Button variant="secondary" size="sm">
-                <UserCog size={16} />
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Link to="/admin">
+                    <Button variant="secondary" size="sm">
+                      <UserCog size={16} />
+                    </Button>
+                  </Link>
+                )}
+                <Button variant="outline" size="sm" onClick={signOut}>
+                  <LogOut size={16} />
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/auth">
+                  <Button variant="outline" size="sm">
+                    <LogIn size={16} />
+                  </Button>
+                </Link>
+                <Link to="/auth?type=admin">
+                  <Button variant="secondary" size="sm">
+                    <UserCog size={16} />
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

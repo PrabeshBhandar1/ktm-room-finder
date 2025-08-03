@@ -28,7 +28,7 @@ const Index = () => {
                   <span>Find Rooms</span>
                 </Button>
               </Link>
-              <Link to="/login">
+              <Link to="/auth">
                 <Button variant="outline" size="lg">
                   Get Started
                 </Button>
