@@ -21,7 +21,7 @@ const Index = () => {
               Discover comfortable, affordable rooms across Kathmandu, Patan, and Bhaktapur. 
               Your ideal home is just a click away.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-row gap-4 justify-center">
               <Link to="/rooms">
                 <Button size="lg" className="flex items-center space-x-2">
                   <Search size={20} />
