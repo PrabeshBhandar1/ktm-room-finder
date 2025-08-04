@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import { Plus, Edit, Trash2, Shield } from "lucide-react";
 
 // Mock room data for admin management
@@ -36,10 +37,7 @@ const mockRooms = [
 ];
 
 const Admin = () => {
-  // Mock admin authentication state
-  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
-  const [adminEmail, setAdminEmail] = useState("");
-  const [adminPassword, setAdminPassword] = useState("");
+  const { user, isAdmin, signOut } = useAuth();
   const [rooms, setRooms] = useState(mockRooms);
   const [newRoom, setNewRoom] = useState({
     title: "",
@@ -51,24 +49,6 @@ const Admin = () => {
     amenities: ""
   });
   const { toast } = useToast();
-
-  const handleAdminLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement admin authentication with Supabase
-    if (adminEmail === "admin@ktmrental.com" && adminPassword === "admin123") {
-      setIsAdminAuthenticated(true);
-      toast({
-        title: "Admin Login Successful",
-        description: "Welcome to the admin dashboard",
-      });
-    } else {
-      toast({
-        title: "Login Failed",
-        description: "Invalid admin credentials",
-        variant: "destructive"
-      });
-    }
-  };
 
   const handleAddRoom = (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,74 +90,21 @@ const Admin = () => {
     });
   };
 
-  if (!isAdminAuthenticated) {
-    return (
-      <div className="min-h-screen bg-background pb-16 md:pb-0">
-        <Navigation />
-        
-        <div className="flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
-          <div className="w-full max-w-md">
-            <Card>
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <Shield className="h-12 w-12 text-primary" />
-                </div>
-                <CardTitle>Admin Login</CardTitle>
-                <CardDescription>
-                  Enter admin credentials to access the dashboard
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleAdminLogin} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="admin-email">Admin Email</Label>
-                    <Input
-                      id="admin-email"
-                      type="email"
-                      placeholder="admin@ktmrental.com"
-                      value={adminEmail}
-                      onChange={(e) => setAdminEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="admin-password">Password</Label>
-                    <Input
-                      id="admin-password"
-                      type="password"
-                      placeholder="Enter admin password"
-                      value={adminPassword}
-                      onChange={(e) => setAdminPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Login as Admin
-                  </Button>
-                </form>
-                <div className="text-center mt-4 text-sm text-muted-foreground">
-                  Demo credentials: admin@ktmrental.com / admin123
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Navigation />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 space-y-4 sm:space-y-0">
-          <h1 className="text-2xl md:text-3xl font-bold text-foreground">Admin Dashboard</h1>
+          <div>
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Admin Dashboard</h1>
+            <p className="text-muted-foreground mt-1">Welcome, {user?.user_metadata?.full_name || user?.email}</p>
+          </div>
           <Button 
             variant="outline" 
-            onClick={() => setIsAdminAuthenticated(false)}
+            onClick={signOut}
           >
-            Logout
+            Sign Out
           </Button>
         </div>
 
