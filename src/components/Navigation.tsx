@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Home, LogIn, LogOut, UserCog, Search, Phone, Info, User } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -70,9 +71,17 @@ const Navigation = () => {
             <div className="flex items-center space-x-4">
               {user ? (
                 <>
-                  <span className="text-sm text-muted-foreground">
-                    Welcome, {user.email}
-                  </span>
+                  <div className="flex items-center space-x-3">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name || user.email} />
+                      <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+                        {(user.user_metadata?.full_name || user.email)?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm text-muted-foreground">
+                      {user.user_metadata?.full_name || user.email}
+                    </span>
+                  </div>
                   {isAdmin && (
                     <Link to="/admin">
                       <Button variant="secondary" size="sm" className="flex items-center space-x-2">
@@ -121,6 +130,12 @@ const Navigation = () => {
           <div className="flex items-center space-x-2">
             {user ? (
               <>
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name || user.email} />
+                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+                    {(user.user_metadata?.full_name || user.email)?.charAt(0).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
                 {isAdmin && (
                   <Link to="/admin">
                     <Button variant="secondary" size="sm">
