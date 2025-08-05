@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/hooks/useClerkAuth";
 import { MapPin, Bed, Bath, Wifi, Car, Search, Eye } from "lucide-react";
 
 // Mock data for rooms - this will be replaced with Supabase data later

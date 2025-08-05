@@ -1,12 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Home, LogIn, LogOut, UserCog, Search, Phone, Info, User } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
+import { Home, LogIn, UserCog, Search, Phone, Info } from "lucide-react";
+import { useAuth } from "@/hooks/useClerkAuth";
+import { UserButton, SignInButton } from "@clerk/clerk-react";
 
 const Navigation = () => {
   const location = useLocation();
-  const { user, isAdmin, signOut } = useAuth();
+  const { user, isAdmin } = useAuth();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -72,14 +72,8 @@ const Navigation = () => {
               {user ? (
                 <>
                   <div className="flex items-center space-x-3">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name || user.email} />
-                      <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                        {(user.user_metadata?.full_name || user.email)?.charAt(0).toUpperCase()}
-                      </AvatarFallback>
-                    </Avatar>
                     <span className="text-sm text-muted-foreground">
-                      {user.user_metadata?.full_name || user.email}
+                      {user.firstName} {user.lastName}
                     </span>
                   </div>
                   {isAdmin && (
@@ -90,25 +84,17 @@ const Navigation = () => {
                       </Button>
                     </Link>
                   )}
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={signOut}
-                    className="flex items-center space-x-2"
-                  >
-                    <LogOut size={16} />
-                    <span>Sign Out</span>
-                  </Button>
+                  <UserButton afterSignOutUrl="/" />
                 </>
               ) : (
                 <>
-                  <Link to="/auth">
+                  <SignInButton fallbackRedirectUrl="/">
                     <Button variant="outline" size="sm" className="flex items-center space-x-2">
                       <LogIn size={16} />
                       <span>Login</span>
                     </Button>
-                  </Link>
-                  <Link to="/auth?type=admin">
+                  </SignInButton>
+                  <Link to="/auth?admin=true">
                     <Button variant="secondary" size="sm" className="flex items-center space-x-2">
                       <UserCog size={16} />
                       <span>Admin</span>
@@ -130,12 +116,6 @@ const Navigation = () => {
           <div className="flex items-center space-x-2">
             {user ? (
               <>
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={user.user_metadata?.avatar_url} alt={user.user_metadata?.full_name || user.email} />
-                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
-                    {(user.user_metadata?.full_name || user.email)?.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
                 {isAdmin && (
                   <Link to="/admin">
                     <Button variant="secondary" size="sm">
@@ -143,18 +123,16 @@ const Navigation = () => {
                     </Button>
                   </Link>
                 )}
-                <Button variant="outline" size="sm" onClick={signOut}>
-                  <LogOut size={16} />
-                </Button>
+                <UserButton afterSignOutUrl="/" />
               </>
             ) : (
               <>
-                <Link to="/auth">
+                <SignInButton fallbackRedirectUrl="/">
                   <Button variant="outline" size="sm">
                     <LogIn size={16} />
                   </Button>
-                </Link>
-                <Link to="/auth?type=admin">
+                </SignInButton>
+                <Link to="/auth?admin=true">
                   <Button variant="secondary" size="sm">
                     <UserCog size={16} />
                   </Button>
