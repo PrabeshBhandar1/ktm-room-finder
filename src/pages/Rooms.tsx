@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useAuth } from "@/hooks/useClerkAuth";
-import { MapPin, Bed, Bath, Wifi, Car, Search, Eye } from "lucide-react";
+import { MapPin, Bed, Bath, Wifi, Car, Search, Eye, EyeOff } from "lucide-react";
 
 // Mock data for rooms - this will be replaced with Supabase data later
 const mockRooms = [
@@ -19,7 +20,11 @@ const mockRooms = [
     bedrooms: 1,
     bathrooms: 1,
     amenities: ["WiFi", "Parking"],
-    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=300&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&h=300&fit=crop"
+    ],
     available: true
   },
   {
@@ -30,7 +35,11 @@ const mockRooms = [
     bedrooms: 2,
     bathrooms: 2,
     amenities: ["WiFi", "Parking", "Garden"],
-    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&h=300&fit=crop"
+    ],
     available: true
   },
   {
@@ -41,7 +50,11 @@ const mockRooms = [
     bedrooms: 1,
     bathrooms: 1,
     amenities: ["WiFi"],
-    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&h=300&fit=crop",
+    images: [
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500&h=300&fit=crop",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=500&h=300&fit=crop"
+    ],
     available: true
   }
 ];
@@ -49,6 +62,7 @@ const mockRooms = [
 const Rooms = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredRooms, setFilteredRooms] = useState(mockRooms);
+  const [showPrices, setShowPrices] = useState<{[key: number]: boolean}>({});
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -67,6 +81,13 @@ const Rooms = () => {
     } else {
       navigate("/auth");
     }
+  };
+
+  const togglePriceVisibility = (roomId: number) => {
+    setShowPrices(prev => ({
+      ...prev,
+      [roomId]: !prev[roomId]
+    }));
   };
 
   return (
@@ -93,11 +114,21 @@ const Rooms = () => {
           {filteredRooms.map((room) => (
             <Card key={room.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-video overflow-hidden">
-                <img
-                  src={room.image}
-                  alt={room.title}
-                  className="w-full h-full object-cover"
-                />
+                <Carousel className="w-full h-full">
+                  <CarouselContent>
+                    {room.images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <img
+                          src={image}
+                          alt={`${room.title} - Image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
+                </Carousel>
               </div>
               
               <CardHeader>
@@ -115,8 +146,26 @@ const Rooms = () => {
               
               <CardContent>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-2xl font-bold text-primary">
-                    Rs. {room.price.toLocaleString()}/month
+                  <div className="flex items-center space-x-2">
+                    {user ? (
+                      <div className="text-2xl font-bold text-primary">
+                        Rs. {room.price.toLocaleString()}/month
+                      </div>
+                    ) : (
+                      <>
+                        <div className="text-2xl font-bold text-primary">
+                          {showPrices[room.id] ? `Rs. ${room.price.toLocaleString()}/month` : "Rs. XXXX/month"}
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => togglePriceVisibility(room.id)}
+                          className="p-1 h-8 w-8"
+                        >
+                          {showPrices[room.id] ? <EyeOff size={16} /> : <Eye size={16} />}
+                        </Button>
+                      </>
+                    )}
                   </div>
                 </div>
                 
@@ -155,11 +204,21 @@ const Rooms = () => {
                       </DialogHeader>
                       <div className="space-y-4">
                         <div className="aspect-video overflow-hidden rounded-md">
-                          <img
-                            src={room.image}
-                            alt={room.title}
-                            className="w-full h-full object-cover"
-                          />
+                          <Carousel className="w-full h-full">
+                            <CarouselContent>
+                              {room.images.map((image, index) => (
+                                <CarouselItem key={index}>
+                                  <img
+                                    src={image}
+                                    alt={`${room.title} - Image ${index + 1}`}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </CarouselItem>
+                              ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="left-2" />
+                            <CarouselNext className="right-2" />
+                          </Carousel>
                         </div>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -173,8 +232,26 @@ const Rooms = () => {
                           
                           <div>
                             <h3 className="font-semibold mb-2">Price</h3>
-                            <div className="text-2xl font-bold text-primary">
-                              Rs. {room.price.toLocaleString()}/month
+                            <div className="flex items-center space-x-2">
+                              {user ? (
+                                <div className="text-2xl font-bold text-primary">
+                                  Rs. {room.price.toLocaleString()}/month
+                                </div>
+                              ) : (
+                                <>
+                                  <div className="text-2xl font-bold text-primary">
+                                    {showPrices[room.id] ? `Rs. ${room.price.toLocaleString()}/month` : "Rs. XXXX/month"}
+                                  </div>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => togglePriceVisibility(room.id)}
+                                    className="p-1 h-8 w-8"
+                                  >
+                                    {showPrices[room.id] ? <EyeOff size={16} /> : <Eye size={16} />}
+                                  </Button>
+                                </>
+                              )}
                             </div>
                           </div>
                           

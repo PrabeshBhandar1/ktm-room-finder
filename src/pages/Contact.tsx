@@ -96,8 +96,8 @@ const Contact = () => {
               </CardHeader>
               <CardContent>
                 <address className="not-italic text-foreground">
-                  New Road, Kathmandu 44600<br />
-                  Bagmati Province, Nepal
+                  Gatthaghar, Nepal<br />
+                  (Opposite to German Homes)
                 </address>
                 <CardDescription className="mt-2">
                   Visit our office for in-person assistance
