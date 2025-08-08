@@ -18,7 +18,7 @@ const Navigation = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
               <Link to="/" className="text-2xl font-bold text-primary">
-                KTM Rental
+                KTM Rentals
               </Link>
               <div className="flex space-x-6">
                 <Link
@@ -111,7 +111,7 @@ const Navigation = () => {
       <div className="md:hidden bg-background border-b border-border sticky top-0 z-50">
         <div className="flex justify-between items-center h-14 px-4">
           <Link to="/" className="text-xl font-bold text-primary">
-            KTM Rental
+            KTM Rentals
           </Link>
           <div className="flex items-center space-x-2">
             {user ? (

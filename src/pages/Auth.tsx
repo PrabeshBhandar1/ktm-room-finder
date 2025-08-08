@@ -59,7 +59,7 @@ const Auth = () => {
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground">
-              {isAdminFlow ? 'Admin Portal' : 'Welcome to KTM Rental'}
+              {isAdminFlow ? 'Admin Portal' : 'Welcome to KTM Rentals'}
             </h2>
             <p className="text-muted-foreground mt-2">
               {isAdminFlow 

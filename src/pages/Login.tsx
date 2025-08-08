@@ -42,7 +42,7 @@ const Login = () => {
       <div className="flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground">Welcome to KTM Rental</h2>
+            <h2 className="text-3xl font-bold text-foreground">Welcome to KTM Rentals</h2>
             <p className="text-muted-foreground mt-2">Find your perfect room in Kathmandu Valley</p>
           </div>
 

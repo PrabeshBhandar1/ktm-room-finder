@@ -13,7 +13,7 @@ const Contact = () => {
             Contact Us
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Get in touch with KTM Rental. We're here to help you find the perfect room in Kathmandu Valley.
+            Get in touch with KTM Rentals. We're here to help you find the perfect room in Kathmandu Valley.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ const Contact = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="KTM Rental Office Location"
+                    title="KTM Rentals Office Location"
                   ></iframe>
                 </div>
               </CardContent>

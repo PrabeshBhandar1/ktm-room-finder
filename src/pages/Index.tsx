@@ -42,7 +42,7 @@ const Index = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-4">
-            Why Choose KTM Rental?
+            Why Choose KTM Rentals?
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             We make finding and booking rooms in Kathmandu Valley simple, safe, and reliable.
@@ -102,7 +102,7 @@ const Index = () => {
               Ready to Find Your Next Home?
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              Join thousands of satisfied tenants who found their perfect room through KTM Rental.
+              Join thousands of satisfied tenants who found their perfect room through KTM Rentals.
             </p>
             <Link to="/rooms">
               <Button size="lg" className="flex items-center space-x-2 mx-auto">
@@ -118,7 +118,7 @@ const Index = () => {
       <footer className="bg-background border-t border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-muted-foreground">
-            <p>&copy; 2024 KTM Rental. Making room finding easier in Kathmandu Valley.</p>
+            <p>&copy; 2024 KTM Rentals. Making room finding easier in Kathmandu Valley.</p>
           </div>
         </div>
       </footer>

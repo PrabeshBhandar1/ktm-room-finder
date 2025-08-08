@@ -12,7 +12,7 @@ const About = () => {
         {/* Hero Section */}
         <div className="text-center mb-8 md:mb-16">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            About KTM Rental
+            About KTM Rentals
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Your trusted partner in finding quality accommodation across Kathmandu Valley. 
@@ -59,11 +59,11 @@ const About = () => {
         <Card className="mb-16">
           <CardHeader>
             <CardTitle>Our Story</CardTitle>
-            <CardDescription>How KTM Rental came to be</CardDescription>
+            <CardDescription>How KTM Rentals came to be</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
-              Founded in 2020, KTM Rental was born out of the frustration many people face 
+              Founded in 2020, KTM Rentals was born out of the frustration many people face 
               when searching for accommodation in Kathmandu Valley. Our founders, having 
               experienced the challenges of finding reliable, affordable housing firsthand, 
               decided to create a solution that would benefit both tenants and landlords.
@@ -84,7 +84,7 @@ const About = () => {
         {/* Key Features */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-foreground text-center mb-8">
-            Why Choose KTM Rental?
+            Why Choose KTM Rentals?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="text-center">
