@@ -17,8 +17,8 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-8">
-              <Link to="/" className="text-2xl font-bold text-primary">
-                KTM Rentals
+              <Link to="/" className="flex items-center">
+                <img src="/lovable-uploads/955766e5-a15d-452b-972e-f8792adb1f39.png" alt="KTM Rentals" className="h-12 w-12 object-contain" />
               </Link>
               <div className="flex space-x-6">
                 <Link
@@ -110,8 +110,8 @@ const Navigation = () => {
       {/* Mobile Top Bar */}
       <div className="md:hidden bg-background border-b border-border sticky top-0 z-50">
         <div className="flex justify-between items-center h-14 px-4">
-          <Link to="/" className="text-xl font-bold text-primary">
-            KTM Rentals
+          <Link to="/" className="flex items-center">
+            <img src="/lovable-uploads/955766e5-a15d-452b-972e-f8792adb1f39.png" alt="KTM Rentals" className="h-10 w-10 object-contain" />
           </Link>
           <div className="flex items-center space-x-2">
             {user ? (
