@@ -1,73 +1,40 @@
-# Welcome to your Lovable project
+# 🏠 KTM Rental
 
-## Project info
+KTM Rental is a modern property rental platform for Kathmandu and surrounding areas.  
+It allows property owners to list their rooms, apartments, and houses for rent, while enabling renters to browse available listings and contact the owners directly.
 
-**URL**: https://lovable.dev/projects/e5313911-b50c-4549-aed9-5da8d10554e9
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### For Renters
+- Browse available rooms/apartments/houses.
+- Search and filter by location, price, bedrooms, and amenities.
+- View images, descriptions, and contact details of each property.
 
-**Use Lovable**
+### For Owners
+- Submit property listings via an easy-to-use form.
+- Manage your own listings.
+- Upload multiple images for each property.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e5313911-b50c-4549-aed9-5da8d10554e9) and start prompting.
+### For Admins
+- Review and approve property listings before they go live.
+- Reject listings with invalid or incomplete information.
+- Manage all active properties.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠 Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+**Frontend**
+- React.js + Vite
 - Tailwind CSS
+- Clerk (Authentication & User Management)
 
-## How can I deploy this project?
+**Backend & Database**
+- Supabase (PostgreSQL + Row Level Security + Storage)
+- SQL Triggers & Policies for approval workflow
 
-Simply open [Lovable](https://lovable.dev/projects/e5313911-b50c-4549-aed9-5da8d10554e9) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Trying my bes...
