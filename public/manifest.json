@@ -1,0 +1,21 @@
+{
+  "name": "KTM RENTALS",
+  "short_name": "KTM RENTALS",
+  "description": "Find Your Perfect Room in Kathmandu Valley",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#B9A7C9",
+  "icons": [
+    {
+      "src": "/lovable-uploads/955766e5-a15d-452b-972e-f8792adb1f39.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/lovable-uploads/955766e5-a15d-452b-972e-f8792adb1f39.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

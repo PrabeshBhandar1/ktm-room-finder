@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -52,10 +53,10 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-16 md:pb-0">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
       
-      <div className="flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex-1 flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground">
@@ -99,7 +100,6 @@ const Auth = () => {
                         value={loginEmail}
                         onChange={(e) => setLoginEmail(e.target.value)}
                         required
-                        disabled={loading}
                       />
                     </div>
                     <div className="space-y-2">
@@ -112,8 +112,6 @@ const Auth = () => {
                           value={loginPassword}
                           onChange={(e) => setLoginPassword(e.target.value)}
                           required
-                          disabled={loading}
-                          className="pr-10"
                         />
                         <Button
                           type="button"
@@ -121,117 +119,93 @@ const Auth = () => {
                           size="sm"
                           className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                           onClick={() => setShowLoginPassword(!showLoginPassword)}
-                          disabled={loading}
                         >
                           {showLoginPassword ? (
-                            <EyeOff className="h-4 w-4 text-muted-foreground" />
+                            <EyeOff className="h-4 w-4" />
                           ) : (
-                            <Eye className="h-4 w-4 text-muted-foreground" />
+                            <Eye className="h-4 w-4" />
                           )}
                         </Button>
                       </div>
                     </div>
                     <Button type="submit" className="w-full" disabled={loading}>
-                      {loading ? 'Signing in...' : (isAdminFlow ? 'Admin Login' : 'Login')}
+                      {loading ? "Signing in..." : "Sign In"}
                     </Button>
                   </form>
                 </CardContent>
               </Card>
             </TabsContent>
             
-            {!isAdminFlow && (
-              <TabsContent value="signup">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Create New Account</CardTitle>
-                    <CardDescription>
-                      Sign up to start booking rooms
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <form onSubmit={handleSignup} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-name">Full Name</Label>
+            <TabsContent value="signup">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Create New Account</CardTitle>
+                  <CardDescription>
+                    Sign up to start finding your perfect room
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSignup} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-name">Full Name</Label>
+                      <Input
+                        id="signup-name"
+                        type="text"
+                        placeholder="Your full name"
+                        value={signupName}
+                        onChange={(e) => setSignupName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-email">Email</Label>
+                      <Input
+                        id="signup-email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={signupEmail}
+                        onChange={(e) => setSignupEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="signup-password">Password</Label>
+                      <div className="relative">
                         <Input
-                          id="signup-name"
-                          type="text"
-                          placeholder="Your full name"
-                          value={signupName}
-                          onChange={(e) => setSignupName(e.target.value)}
+                          id="signup-password"
+                          type={showSignupPassword ? "text" : "password"}
+                          placeholder="Create a password"
+                          value={signupPassword}
+                          onChange={(e) => setSignupPassword(e.target.value)}
                           required
-                          disabled={loading}
                         />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                          onClick={() => setShowSignupPassword(!showSignupPassword)}
+                        >
+                          {showSignupPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                        </Button>
                       </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-email">Email</Label>
-                        <Input
-                          id="signup-email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={signupEmail}
-                          onChange={(e) => setSignupEmail(e.target.value)}
-                          required
-                          disabled={loading}
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="signup-password">Password</Label>
-                        <div className="relative">
-                          <Input
-                            id="signup-password"
-                            type={showSignupPassword ? "text" : "password"}
-                            placeholder="Create a password"
-                            value={signupPassword}
-                            onChange={(e) => setSignupPassword(e.target.value)}
-                            required
-                            disabled={loading}
-                            className="pr-10"
-                          />
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                            onClick={() => setShowSignupPassword(!showSignupPassword)}
-                            disabled={loading}
-                          >
-                            {showSignupPassword ? (
-                              <EyeOff className="h-4 w-4 text-muted-foreground" />
-                            ) : (
-                              <Eye className="h-4 w-4 text-muted-foreground" />
-                            )}
-                          </Button>
-                        </div>
-                      </div>
-                      <Button type="submit" className="w-full" disabled={loading}>
-                        {loading ? 'Creating account...' : 'Sign Up'}
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            )}
+                    </div>
+                    <Button type="submit" className="w-full" disabled={loading}>
+                      {loading ? "Creating account..." : "Create Account"}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </TabsContent>
           </Tabs>
-
-          <div className="text-center mt-4 space-y-2">
-            {!isAdminFlow && (
-              <div>
-                <Link 
-                  to="/auth?type=admin" 
-                  className="text-sm text-muted-foreground hover:text-primary"
-                >
-                  Admin Login
-                </Link>
-              </div>
-            )}
-            <div>
-              <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
-                ← Back to Home
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

@@ -61,6 +61,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom brand colors
+				brand: {
+					lavender: '#B9A7C9',
+					'light-blue': '#82B3D7',
+					'light-gray': '#E3E3E3',
 				}
 			},
 			borderRadius: {

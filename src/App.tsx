@@ -12,6 +12,8 @@ import ClerkAuth from "./pages/ClerkAuth";
 import Admin from "./pages/Admin";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import PostProperty from "./pages/PostProperty";
+import UserDashboard from "./pages/UserDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,11 +29,17 @@ const App = () => (
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/post-property" element={<PostProperty />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth" element={<ClerkAuth />} />
           <Route path="/admin" element={
             <ProtectedRoute requireAdmin>
               <Admin />
+            </ProtectedRoute>
+          } />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <UserDashboard />
             </ProtectedRoute>
           } />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

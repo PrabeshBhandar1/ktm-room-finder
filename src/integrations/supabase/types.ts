@@ -62,6 +62,212 @@ export type Database = {
         }
         Relationships: []
       }
+      user_logins: {
+        Row: {
+          id: string
+          user_id: string
+          username: string | null
+          email: string
+          phone_number: string | null
+          logged_in_date: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          username?: string | null
+          phone_number?: string | null
+          logged_in_date?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          username?: string | null
+          email?: string
+          phone_number?: string | null
+          logged_in_date?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      toverify: {
+        Row: {
+          id: string
+          title: string
+          description: string | null
+          location: string
+          price: number
+          bedrooms: number
+          bathrooms: number
+          amenities: string[] | null
+          images: string[] | null
+          available: boolean
+          owner_id: string
+          contact_phone: string | null
+          contact_email: string | null
+          status: "pending" | "approved" | "rejected"
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          description?: string | null
+          location: string
+          price: number
+          bedrooms?: number
+          bathrooms?: number
+          amenities?: string[] | null
+          images?: string[] | null
+          available?: boolean
+          owner_id: string
+          contact_phone?: string | null
+          contact_email?: string | null
+          status?: "pending" | "approved" | "rejected"
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          description?: string | null
+          location?: string
+          price?: number
+          bedrooms?: number
+          bathrooms?: number
+          amenities?: string[] | null
+          images?: string[] | null
+          available?: boolean
+          owner_id?: string
+          contact_phone?: string | null
+          contact_email?: string | null
+          status?: "pending" | "approved" | "rejected"
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "toverify_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "user_logins"
+            referencedColumns: ["user_id"]
+          }
+        ]
+      }
+      rooms: {
+        Row: {
+          id: string
+          title: string
+          description: string | null
+          location: string
+          price: number
+          bedrooms: number
+          bathrooms: number
+          amenities: string[] | null
+          images: string[] | null
+          available: boolean
+          owner_id: string
+          contact_phone: string | null
+          contact_email: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          description?: string | null
+          location: string
+          price: number
+          bedrooms?: number
+          bathrooms?: number
+          amenities?: string[] | null
+          images?: string[] | null
+          available?: boolean
+          owner_id: string
+          contact_phone?: string | null
+          contact_email?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          description?: string | null
+          location?: string
+          price?: number
+          bedrooms?: number
+          bathrooms?: number
+          amenities?: string[] | null
+          images?: string[] | null
+          available?: boolean
+          owner_id?: string
+          contact_phone?: string | null
+          contact_email?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rooms_owner_id_fkey"
+            columns: ["owner_id"]
+            isOneToOne: false
+            referencedRelation: "user_logins"
+            referencedColumns: ["user_id"]
+          }
+        ]
+      }
+      bookings: {
+        Row: {
+          id: string
+          room_id: string
+          user_id: string
+          start_date: string
+          end_date: string
+          status: string
+          total_amount: number
+          message: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          room_id: string
+          user_id: string
+          start_date: string
+          end_date: string
+          status?: string
+          total_amount: number
+          message?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          room_id?: string
+          user_id?: string
+          start_date?: string
+          end_date?: string
+          status?: string
+          total_amount?: number
+          message?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "rooms"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never

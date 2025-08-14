@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,10 +37,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-16 md:pb-0">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navigation />
       
-      <div className="flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex-1 flex items-center justify-center py-8 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-foreground">Welcome to KTM Rentals</h2>
@@ -129,7 +130,7 @@ const Login = () => {
                       <Input
                         id="signup-phone"
                         type="tel"
-                        placeholder="Your phone number"
+                        placeholder="+977 98XXXXXXXX"
                         value={signupPhone}
                         onChange={(e) => setSignupPhone(e.target.value)}
                         required
@@ -147,21 +148,17 @@ const Login = () => {
                       />
                     </div>
                     <Button type="submit" className="w-full">
-                      Sign Up
+                      Create Account
                     </Button>
                   </form>
                 </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
-
-          <div className="text-center mt-4">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
-              ← Back to Home
-            </Link>
-          </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };
